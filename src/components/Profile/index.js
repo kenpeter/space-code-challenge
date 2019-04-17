@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleMaps from 'simple-react-google-maps';
 import history from '../../history';
+import Config from '../../config';
 
 const Profile = ({ data }) => {
-  // test
-  console.log(data);
+  const { googleMapApiKey } = Config;
 
   if (data === undefined) {
     history.push('/');
@@ -36,9 +36,9 @@ const Profile = ({ data }) => {
 
       <section>
         <GoogleMaps
-          apiKey="AIzaSyBTBt_Rg3WltGJd6esIrcqoKfhkiOoonIY"
+          apiKey={googleMapApiKey}
           style={{ height: '400px', width: '100%' }}
-          zoom={6}
+          zoom={11}
           center={{ lat: Number(data.latitude), lng: Number(data.longitude) }}
           markers={{ lat: Number(data.latitude), lng: Number(data.longitude) }}
         />

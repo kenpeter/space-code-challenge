@@ -1,3 +1,4 @@
 {
-  "profileUrl": "http://localhost:8000"
+  "profileUrl": "http://localhost:8000",
+  "googleMapApiKey": "AIzaSyBTBt_Rg3WltGJd6esIrcqoKfhkiOoonIY"
 }
