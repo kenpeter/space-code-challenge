@@ -8,10 +8,11 @@
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "concurrently --kill-others \"nodemon ./server/app.js\" \"react-scripts start\"",
+    "lint": "eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,7 +36,11 @@
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0"
   },
-  "precommit": "NODE_ENV=development lint-staged",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx}": [
       "pretty-quick --staged",
