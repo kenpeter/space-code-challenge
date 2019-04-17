@@ -39,7 +39,7 @@ const Home = ({ data }) => {
   return (
     <div className="home">
       <br />
-      <p>
+      <p style={{ textAlign: 'center' }}>
         <Link className="btn btn-primary" to="/create-profile">
           Create a profile
         </Link>

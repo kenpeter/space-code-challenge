@@ -20,7 +20,7 @@ const Profile = ({ data }) => {
 
       <br />
       <section>
-        <label htmlFor="Name">Name</label>
+        <label>Name</label>
         <p>{data.name}</p>
       </section>
 

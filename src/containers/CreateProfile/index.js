@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createProfileAPI } from '../../reducers/createProfile';
+import AutoAddress from '../AutoAddress';
 
-class ProfileCreate extends Component {
+class CreateProfile extends Component {
   constructor(props) {
     super(props);
 
@@ -10,7 +11,9 @@ class ProfileCreate extends Component {
       name: '',
       email: '',
       dob: '',
-      locationName: ''
+      location: '',
+      latitude: '',
+      longitude: ''
     };
   }
 
@@ -23,14 +26,25 @@ class ProfileCreate extends Component {
     });
   }
 
+  handleLocationLatLng(location, latitude, longitude) {
+    this.setState({
+      location,
+      latitude,
+      longitude
+    });
+  }
+
   createProfile() {
     console.log(this.state);
     this.props.createProfileAPIProps(this.state);
   }
 
   render() {
+    // test
+    console.log(this.state);
+
     return (
-      <div className="createProfile">
+      <div className="container createProfile">
         <h3>Create a new profile</h3>
 
         <div className="field">
@@ -68,13 +82,9 @@ class ProfileCreate extends Component {
 
         <div className="field">
           <label>Location</label>
-          <p>
-            <input
-              name="location"
-              value={this.state.location || ''}
-              onChange={this.handleInputChange.bind(this)}
-            />
-          </p>
+          <AutoAddress
+            handleLocationLatLng={this.handleLocationLatLng.bind(this)}
+          />
         </div>
 
         <p>
@@ -101,4 +111,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileCreate);
+)(CreateProfile);
