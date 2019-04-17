@@ -15,6 +15,11 @@ const Profile = ({ data }) => {
   return (
     <form className="container profile">
       <section>
+        <Link to={{ pathname: '/' }}>Back to home page</Link>
+      </section>
+
+      <br />
+      <section>
         <label htmlFor="Name">Name</label>
         <p>{data.name}</p>
       </section>
