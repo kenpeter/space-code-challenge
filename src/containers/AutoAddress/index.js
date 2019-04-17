@@ -13,9 +13,6 @@ class AutoAddress extends React.Component {
             // Other options from https://community.algolia.com/places/documentation.html#options
           }}
           onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
-            console.log(suggestion.value);
-            console.log(suggestion.latlng.lat);
-            console.log(suggestion.latlng.lng);
             this.props.handleLocationLatLng(
               suggestion.value,
               suggestion.latlng.lat,

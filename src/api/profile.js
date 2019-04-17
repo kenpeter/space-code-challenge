@@ -10,8 +10,10 @@ export const getProfiles = () => {
 export const createProfile = item => {
   const body = `name=${item.name}&email=${item.email}&dob=${
     item.dob
-  }&location=${item.location}`;
-  return fetch(`${Config.profileUrl  }/api/create-profile`, {
+  }&location=${item.location}&latitude=${item.latitude}&longitude=${
+    item.longitude
+  }`;
+  return fetch(`${Config.profileUrl}/api/create-profile`, {
     method: 'POST',
     headers: new Headers({
       'Content-Type': 'application/x-www-form-urlencoded' // <-- Specifying the Content-Type

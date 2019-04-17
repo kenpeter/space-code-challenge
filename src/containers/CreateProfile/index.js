@@ -35,14 +35,10 @@ class CreateProfile extends Component {
   }
 
   createProfile() {
-    console.log(this.state);
     this.props.createProfileAPIProps(this.state);
   }
 
   render() {
-    // test
-    console.log(this.state);
-
     return (
       <div className="container createProfile">
         <h3>Create a new profile</h3>
@@ -87,6 +83,7 @@ class CreateProfile extends Component {
           />
         </div>
 
+        <br />
         <p>
           <button
             className="btn btn-primary"
