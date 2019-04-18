@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', routes.profileHome);
 app.post('/api/create-profile', routes.createProfile);
+app.post('/api/edit-profile/:id', routes.editProfile);
 
 const server = app.listen(8000, function() {
   console.log('app running on port.', server.address().port);

@@ -13,3 +13,13 @@ exports.createProfile = function(req, res, next) {
     res.send(doc);
   });
 };
+
+exports.editProfile = function(req, res, next) {
+  const data = req.body;
+
+  let query = {'_id': req.params.id};
+  profileModel.findOneAndUpdate(query, req.body, {upsert:true}, (err, doc) => {
+    if (err) return res.send(500, { error: err });
+    return res.send("succesfully saved");
+  });
+};

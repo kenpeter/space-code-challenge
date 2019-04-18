@@ -27,7 +27,21 @@ const Home = ({ data }) => {
           </td>
 
           <td>
-            <Link to={{ pathname: '/edit-profile' }}>Edit</Link>
+            <Link 
+              to={{ 
+                pathname: '/edit-profile',
+                data: {
+                  _id: item._id,
+                  name: item.name,
+                  email: item.email,
+                  dob: item.dob,
+                  latitude: item.latitude,
+                  longitude: item.longitude,
+                  location: item.location
+                }
+              }}>
+              Edit
+            </Link>
           </td>
         </tr>
       );

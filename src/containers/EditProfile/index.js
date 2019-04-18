@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createProfileAPI } from '../../reducers/createProfile';
+import { editProfileAPI } from '../../reducers/editProfile';
+import AutoAddress from '../AutoAddress';
 
-class ProfileEdit extends Component {
+class EditProfile extends Component {
   constructor(props) {
     super(props);
 
+    const data = this.props.location.data;
+
     this.state = {
-      name: '',
-      email: '',
-      dob: '',
-      locationName: ''
+      _id: data._id,
+      name: data.name,
+      email: data.email,
+      dob: data.dob,
+      location: data.location,
+      latitude: data.latitude,
+      longitude: data.longitude
     };
   }
 
@@ -23,15 +29,22 @@ class ProfileEdit extends Component {
     });
   }
 
-  createProfile() {
-    console.log(this.state);
-    this.props.createProfileAPIProps(this.state);
+  handleLocationLatLng(location, latitude, longitude) {
+    this.setState({
+      location,
+      latitude,
+      longitude
+    });
+  }
+
+  editProfile() {
+    this.props.editProfileAPIProps(this.state);
   }
 
   render() {
     return (
-      <div className="createProfile">
-        <h3>Create a new profile</h3>
+      <div className="container editProfile">
+        <h3>Edit profile</h3>
 
         <div className="field">
           <label>Name</label>
@@ -68,21 +81,18 @@ class ProfileEdit extends Component {
 
         <div className="field">
           <label>Location</label>
-          <p>
-            <input
-              name="location"
-              value={this.state.location || ''}
-              onChange={this.handleInputChange.bind(this)}
-            />
-          </p>
+          <AutoAddress
+            handleLocationLatLng={this.handleLocationLatLng.bind(this)}
+          />
         </div>
 
+        <br />
         <p>
           <button
             className="btn btn-primary"
-            onClick={this.createProfile.bind(this)}
+            onClick={this.editProfile.bind(this)}
           >
-            Create
+            Update
           </button>
         </p>
       </div>
@@ -95,10 +105,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  createProfileAPIProps: item => dispatch(createProfileAPI(item))
+  editProfileAPIProps: item => dispatch(editProfileAPI(item))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileEdit);
+)(EditProfile);
