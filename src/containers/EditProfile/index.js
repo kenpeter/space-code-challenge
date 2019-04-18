@@ -20,6 +20,10 @@ class EditProfile extends Component {
     };
   }
 
+  componentDidMount() {
+    document.querySelector('.algolia-places input').value = this.state.location;
+  }
+
   handleInputChange(e) {
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;

@@ -6,7 +6,7 @@ class AutoAddress extends React.Component {
     return (
       <div>
         <AlgoliaPlaces
-          placeholder="Write an address here"
+          placeholder="Type your address here"
           options={{
             appId: 'plDQL5L5XIBF',
             apiKey: 'b07f0fe46f36015e0a96b1f102f0c8e1'
