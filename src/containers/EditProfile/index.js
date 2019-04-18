@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import GoogleMaps from 'simple-react-google-maps';
 import { editProfileAPI } from '../../reducers/editProfile';
 import AutoAddress from '../AutoAddress';
+import Config from '../../config';
 
 class EditProfile extends Component {
   constructor(props) {
@@ -46,6 +48,9 @@ class EditProfile extends Component {
   }
 
   render() {
+    const { googleMapApiKey } = Config;
+    const { latitude, longitude } = this.state;
+
     return (
       <div className="container editProfile">
         <h3>Edit profile</h3>
@@ -87,6 +92,17 @@ class EditProfile extends Component {
           <label>Location</label>
           <AutoAddress
             handleLocationLatLng={this.handleLocationLatLng.bind(this)}
+          />
+        </div>
+
+        <br />
+        <div className="field">
+          <GoogleMaps
+            apiKey={googleMapApiKey}
+            style={{ height: '400px', width: '100%' }}
+            zoom={11}
+            center={{ lat: Number(latitude), lng: Number(longitude) }}
+            markers={{ lat: Number(latitude), lng: Number(longitude) }}
           />
         </div>
 
