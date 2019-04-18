@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GoogleMaps from 'simple-react-google-maps';
+import { Link } from 'react-router-dom';
 import { editProfileAPI } from '../../reducers/editProfile';
 import AutoAddress from '../AutoAddress';
 import Config from '../../config';
@@ -51,8 +52,17 @@ class EditProfile extends Component {
     const { googleMapApiKey } = Config;
     const { latitude, longitude } = this.state;
 
+    if (this.props.isUpdateSuccess) {
+      alert('Update succcessfully!');
+    }
+
     return (
       <div className="container editProfile">
+        <section>
+          <Link to={{ pathname: '/' }}>Back to home page</Link>
+        </section>
+
+        <br />
         <h3>Edit profile</h3>
 
         <div className="field">
@@ -121,7 +131,9 @@ class EditProfile extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isUpdateSuccess: state.editProfileReducer.success
+  };
 };
 
 const mapDispatchToProps = dispatch => ({

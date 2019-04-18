@@ -8,7 +8,8 @@ export const EDIT_PROFILE_FAIL = 'app/profile/EDIT_PROFILE_FAIL';
 const initState = {
   loading: false,
   isError: false,
-  errors: ''
+  errors: '',
+  success: false
 };
 
 export const editProfileReducer = (state = initState, action) => {
@@ -18,21 +19,24 @@ export const editProfileReducer = (state = initState, action) => {
         ...state,
         loading: true,
         isError: false,
-        errors: ''
+        errors: '',
+        success: false
       };
     case EDIT_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
         isError: false,
-        errors: ''
+        errors: '',
+        success: true
       };
     case EDIT_PROFILE_FAIL:
       return {
         ...state,
         loading: false,
         isError: true,
-        errors: action.errors
+        errors: action.errors,
+        success: false
       };
     default:
       return state;
@@ -44,7 +48,8 @@ export const startEditProfile = () => {
     type: START_EDIT_PROFILE,
     loading: true,
     isError: false,
-    errors: ''
+    errors: '',
+    success: false
   };
 };
 
@@ -53,7 +58,8 @@ export const editProfileSuccess = () => {
     type: EDIT_PROFILE_SUCCESS,
     loading: false,
     isError: false,
-    errors: ''
+    errors: '',
+    success: true
   };
 };
 
@@ -62,7 +68,8 @@ export const editProfileFail = errors => {
     type: EDIT_PROFILE_FAIL,
     loading: false,
     isError: true,
-    errors
+    errors,
+    success: false
   };
 };
 
@@ -75,7 +82,6 @@ export const editProfileAPI = item => {
       })
       .then(res => {
         dispatch(editProfileSuccess());
-        history.push('/home');
       })
       .catch(err => {
         editProfileFail('edit profile fail');
